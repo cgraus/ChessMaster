@@ -69,6 +69,15 @@
     </Compile>
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="Pieces\BoardStyle.cs" />
+    <Compile Include="Pieces\IPiece.cs" />
+    <Compile Include="Pieces\Pawn.cs" />
+    <Compile Include="Pieces\Bishop.cs" />
+    <Compile Include="Pieces\King.cs" />
+    <Compile Include="Pieces\Knight.cs" />
+    <Compile Include="Pieces\Piece.cs" />
+    <Compile Include="Pieces\Queen.cs" />
+    <Compile Include="Pieces\Rook.cs" />
     <Compile Include="Properties\AssemblyInfo.cs">
       <SubType>Code</SubType>
     </Compile>
@@ -93,6 +102,23 @@
   </ItemGroup>
   <ItemGroup>
     <None Include="App.config" />
+  </ItemGroup>
+  <ItemGroup>
+    <Resource Include="Resources\image.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <Resource Include="Resources\Colour\BishopBlack.png" />
+    <Resource Include="Resources\Colour\BishopWhite.png" />
+    <Resource Include="Resources\Colour\KingBlack.png" />
+    <Resource Include="Resources\Colour\KingWhite.png" />
+    <Resource Include="Resources\Colour\KnightBlack.png" />
+    <Resource Include="Resources\Colour\KnightWhite.png" />
+    <Resource Include="Resources\Colour\PawnBlack.png" />
+    <Resource Include="Resources\Colour\PawnWhite.png" />
+    <Resource Include="Resources\Colour\QueenBlack.png" />
+    <Resource Include="Resources\Colour\QueenWhite.png" />
+    <Resource Include="Resources\Colour\RookBlack.png" />
+    <Resource Include="Resources\Colour\RookWhite.png" />
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
 </Project>
