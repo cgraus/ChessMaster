@@ -1,3 +1,4 @@
+<<<<<<< HEAD
 .vs/ChessMaster/v16/TestStore/0/000.testlog
 .vs/ChessMaster/v16/TestStore/0/testlog.manifest
 .vs/ChessMaster/v17/.suo
@@ -9,3 +10,7 @@ ChessMaster/bin/Debug/ChessMaster.pdb
 ChessMaster/obj/Debug/App.g.cs
 ChessMaster/obj/
 .vs/ChessMaster/v16/.suo
+=======
+ChessMaster/bin/
+ChessMaster/obj/
+>>>>>>> 26e47447b6ed12fff2337fa59418c277582625e1
