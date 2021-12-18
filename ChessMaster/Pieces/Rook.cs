@@ -26,7 +26,38 @@ namespace ChessMaster.Pieces
 
         public override Point[] GetMoves(IPiece[] pieces)
         {
-            return null;
+            var points = new List<Point>();
+
+            var up = this.Position.Y - 1;
+            var down = this.Position.Y + 1;
+            var right = this.Position.X + 1;
+            var left = this.Position.X - 1;
+
+            while (up >= 0)
+            {
+                points.Add(new Point(this.Position.X,up));
+                up --;
+            }
+
+            while (down <= 7)
+            {
+                points.Add(new Point(this.Position.X,down));
+                down ++;
+            }
+
+            while(right <= 7)
+            {
+                points.Add(new Point(right,this.Position.Y));
+                right ++;
+            }
+
+            while(left >= 0)
+            {
+                points.Add(new Point(left,this.Position.Y));
+                left --;
+            }
+
+            return points.ToArray();
         }
     }
 }
