@@ -35,7 +35,7 @@ namespace ChessMaster.Pieces
             var down = this.Position.Y + 1;
             var right = this.Position.X - 1;
 
-            // up left and right
+            // up left and right add is to a method later
             while (up >= 0 || left <= 7 || right >= 0 || down <= 7)
 
             {
