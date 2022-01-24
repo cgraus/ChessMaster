@@ -10,6 +10,6 @@ namespace ChessMaster.Pieces
     {
         public static string Board = "Colour";
 
-        public enum Colour { Black, White };
+        public enum Colour { None = 0, Black, White };
     }
 }

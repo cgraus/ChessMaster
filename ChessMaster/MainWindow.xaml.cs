@@ -151,9 +151,7 @@ namespace ChessMaster
             if(this.selectedPiece != null)
             {
                 var possibleMoves = this.selectedPiece.GetMoves(this.Pieces.ToArray());
-
             }
-
         }
 
         void DoMove(object p, MouseEventArgs ea)
@@ -174,6 +172,21 @@ namespace ChessMaster
 
             selectedPiece = piece;
             DrawGameArea();
+        }
+        void MouseUp(object p, MouseButtonEventArgs ea)
+        {
+            if(selectedPiece != null)
+            {
+                var rect = p as Rectangle;
+
+                if (rect != null)
+                {
+                    var pt = (Point)rect.Tag;
+                    selectedPiece.Position = pt;
+                    selectedPiece = null;
+                    DrawGameArea();
+                }
+            }
         }
 
         protected override void OnRenderSizeChanged(SizeChangedInfo sizeInfo)
@@ -278,6 +291,8 @@ namespace ChessMaster
                             A = 150
                         })
                     };
+
+                    rect.MouseUp += this.MouseUp;
 
                     _ = GameArea.Children.Add(rect);
 

@@ -7,6 +7,8 @@ using System.Windows;
 using System.Windows.Controls;
 using System.Windows.Media;
 using System.Windows.Media.Imaging;
+using static ChessMaster.Pieces.BoardStyle;
+
 namespace ChessMaster.Pieces
 {
     public interface IPiece
@@ -18,5 +20,7 @@ namespace ChessMaster.Pieces
         Point Position { get; set; }
 
         Point[] GetMoves(IPiece[] pieces);
+
+        Colour Colour { get; set; }
     }
 }

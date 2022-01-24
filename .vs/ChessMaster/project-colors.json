@@ -1,0 +1,11 @@
+{
+  "Version": 1,
+  "ProjectMap": {
+    "9c2f4000-1216-42cb-92c7-58a336ca679f": {
+      "ProjectGuid": "9c2f4000-1216-42cb-92c7-58a336ca679f",
+      "DisplayName": "ChessMaster",
+      "ColorIndex": 0
+    }
+  },
+  "NextColorIndex": 1
+}

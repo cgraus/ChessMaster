@@ -7,6 +7,7 @@ using System.Windows.Media.Imaging;
 using System.Windows.Controls;
 using static ChessMaster.Pieces.BoardStyle;
 using System.Windows;
+using ChessMaster.Utilities;
 
 namespace ChessMaster.Pieces
 {
@@ -30,14 +31,33 @@ namespace ChessMaster.Pieces
 
             var moves = new List<Point>();
 
-            moves.Add(new Point(this.Position.X + 2, this.Position.Y + 1));
-            moves.Add(new Point(this.Position.X + 2, this.Position.Y - 1));
-            moves.Add(new Point(this.Position.X + 1, this.Position.Y - 2));
-            moves.Add(new Point(this.Position.X + 1, this.Position.Y + 2));
-            moves.Add(new Point(this.Position.X - 2, this.Position.Y + 1));
-            moves.Add(new Point(this.Position.X - 2, this.Position.Y - 1));
-            moves.Add(new Point(this.Position.X - 1, this.Position.Y - 2));
-            moves.Add(new Point(this.Position.X - 1, this.Position.Y + 2));
+            var p = new Point(this.Position.X + 2, this.Position.Y + 1);
+            if (pieces.PieceAtSquare(p) != this.Colour)
+                moves.Add(p);
+
+            p = new Point(this.Position.X + 2, this.Position.Y - 1);
+            if (pieces.PieceAtSquare(p) != this.Colour)
+                moves.Add(p);
+
+            p = new Point(this.Position.X + 1, this.Position.Y - 2);
+            if (pieces.PieceAtSquare(p) != this.Colour)
+                moves.Add(p);
+
+            p = new Point(this.Position.X + 1, this.Position.Y + 2);
+            if (pieces.PieceAtSquare(p) != this.Colour)
+                moves.Add(p);
+
+            p = new Point(this.Position.X - 2, this.Position.Y - 1);
+            if (pieces.PieceAtSquare(p) != this.Colour)
+                moves.Add(p);
+
+            p = new Point(this.Position.X - 1, this.Position.Y - 2);
+            if (pieces.PieceAtSquare(p) != this.Colour)
+                moves.Add(p);
+
+            p = new Point(this.Position.X - 1, this.Position.Y + 2);
+            if (pieces.PieceAtSquare(p) != this.Colour)
+                moves.Add(p);
 
             foreach(var move in moves)
             {
