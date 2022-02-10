@@ -7,6 +7,7 @@ using System.Windows.Media.Imaging;
 using System.Windows.Controls;
 using static ChessMaster.Pieces.BoardStyle;
 using System.Windows;
+using ChessMaster.Utilities;
 
 namespace ChessMaster.Pieces
 {
@@ -28,36 +29,102 @@ namespace ChessMaster.Pieces
         {
             var points = new List<Point>();
 
-            var up = this.Position.Y-1;
-            var left = this.Position.X +1;
-            var down = this.Position.Y +1;
-            var right = this.Position.X -1;
+            var up = this.Position.Y;
+            var right = this.Position.X;
+            var left = this.Position.X;
+            var down = this.Position.Y;
 
-            // up left and right
-            while(up >= 0 || left <= 7 || right >= 0 || down <= 7)
+            var newPos = new Point(this.Position.X, this.Position.Y);
 
-            {
-                if(up >= 0 && right >=0)
+            
+                while(up >= 1 && right <=6)
+                {   
+                    up --;
+                    right ++;
+                    
+                    newPos = new Point(right,up);
+                    var color = pieces.PieceAtSquare(newPos);
+                    if (color != this.Colour)
+                    {
+                        points.Add(newPos);
+                        if (color != Colour.None)
+                        {
+                            break;
+                        }
+                    }
+                    else
+                    {
+                             break;
+                    }    
+                    }
+                up = this.Position.Y;
+
+                while(up >=1 && left >=1)
                 {
-                    points.Add(new Point(right,up));
+                     up --;
+                     left --;
+                    newPos = new Point(left,up);
+                    var color = pieces.PieceAtSquare(newPos);
+                    if (color != this.Colour)
+                    {
+                        points.Add(newPos);
+                        if (color != Colour.None)
+                        {
+                            break;
+                        }
+                    }
+                    else
+                    {
+                             break;
+                    }
                 }
-                if(up >= 0 && left <=7)
+                left = this.Position.X;
+
+                up = this.Position.Y;
+                right = this.Position.X;
+
+                while(down <= 6 && right <= 6)
+                {   
+                    right ++;
+                    down++;
+                    newPos = new Point(right,down);
+                    var color = pieces.PieceAtSquare(newPos);
+                    if (color != this.Colour)
+                    {
+                        points.Add(newPos);
+                        if (color != Colour.None)
+                        {
+                            break;
+                        }
+                    }
+                    else
+                    {
+                             break;
+                    }
+                }
+            
+                down = this.Position.Y;
+
+                while(down <= 6 && left >= 1)
                 {
-                    points.Add(new Point(left,up));
+                    left --;
+                    down ++;
+                    newPos = new Point(left,down);
+                    var color = pieces.PieceAtSquare(newPos);
+                    if (color != this.Colour)
+                    {
+                        points.Add(newPos);
+                        if (color != Colour.None)
+                        {
+                            break;
+                        }
+                    }
+                    else
+                    {
+                             break;
+                    }
                 }
-                if(down <= 7 && right >= 0)
-                {
-                    points.Add(new Point(right,down));
-                }
-                if(down <= 7 && left <= 7)
-                {
-                    points.Add(new Point(left,down));
-                }
-                up --;
-                left ++;
-                right --;
-                down ++;
-            }
+
 
             return points.ToArray();
         }

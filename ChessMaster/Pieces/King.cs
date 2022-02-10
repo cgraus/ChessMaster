@@ -7,6 +7,7 @@ using System.Windows.Media.Imaging;
 using System.Windows.Controls;
 using static ChessMaster.Pieces.BoardStyle;
 using System.Windows;
+using ChessMaster.Utilities;
 
 namespace ChessMaster.Pieces
 {
@@ -28,15 +29,36 @@ namespace ChessMaster.Pieces
         {
             var points = new List<Point>();
 
-            points.Add(new Point(this.Position.X+1,this.Position.Y));
-            points.Add(new Point(this.Position.X+1,this.Position.Y+1));
-            points.Add(new Point(this.Position.X,this.Position.Y+1));
-            points.Add(new Point(this.Position.X-1,this.Position.Y+1));
-            points.Add(new Point(this.Position.X-1,this.Position.Y));
-            points.Add(new Point(this.Position.X-1,this.Position.Y-1));
-            points.Add(new Point(this.Position.X,this.Position.Y-1));
-            points.Add(new Point(this.Position.X+1,this.Position.Y-1));
+            
+           var newPos = new Point(this.Position.X,this.Position.Y);
+           
 
+            int xx = -2;
+            int yy = -1;
+
+           for(int i = 0; i <= 8; i++)
+            {
+                if (xx >= 1 )
+                {
+                   yy ++;
+                   xx = -1; 
+                    
+                }else xx ++;
+             newPos = new Point(this.Position.X + xx,this.Position.Y + yy);
+             var color = pieces.PieceAtSquare(newPos);
+            if (color != this.Colour)
+                {
+                 points.Add(newPos);
+                    if(color != Colour.None)
+                    {
+                        continue;
+                    }
+                }
+                else
+	            {
+                    continue;
+	            }
+            }
             return points.ToArray();
         }
     }

@@ -2,8 +2,9 @@
   "ExpandedNodes": [
     "",
     "\\ChessMaster",
-    "\\ChessMaster\\Pieces"
+    "\\ChessMaster\\Pieces",
+    "\\ChessMaster\\Utilities"
   ],
-  "SelectedNode": "\\ChessMaster\\Pieces\\Queen.cs",
+  "SelectedNode": "\\ChessMaster\\Pieces\\Bishop.cs",
   "PreviewInSolutionExplorer": false
 }

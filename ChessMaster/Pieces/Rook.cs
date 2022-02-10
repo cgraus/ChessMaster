@@ -7,6 +7,7 @@ using System.Windows.Media.Imaging;
 using System.Windows.Controls;
 using static ChessMaster.Pieces.BoardStyle;
 using System.Windows;
+using ChessMaster.Utilities;
 
 namespace ChessMaster.Pieces
 {
@@ -33,27 +34,90 @@ namespace ChessMaster.Pieces
             var right = this.Position.X + 1;
             var left = this.Position.X - 1;
 
-            while (up >= 0)
+            var newPos = new Point(this.Position.X, this.Position.Y);
+
+           while (up >= 0)
+           { 
+             newPos = new Point(this.Position.X, up);
+             var color = pieces.PieceAtSquare(newPos);
+            if(color != this.Colour)
             {
-                points.Add(new Point(this.Position.X,up));
-                up --;
+                points.Add(newPos);
+
+                if(color != Colour.None)
+                {
+                    break;
+                }                                    
             }
+            else
+            {
+                break;
+            }
+
+                up --;
+           }
 
             while (down <= 7)
             {
-                points.Add(new Point(this.Position.X,down));
+                newPos = new Point(this.Position.X,down);
+                var color = pieces.PieceAtSquare(newPos);
+                if (color != this.Colour)
+                {
+                    points.Add(newPos);
+                    if(color != Colour.None)
+                    {
+                        break;
+
+                    }
+                }
+                else
+                {
+                    break;
+                }
+
                 down ++;
             }
 
             while(right <= 7)
             {
-                points.Add(new Point(right,this.Position.Y));
+                newPos = new Point(right,this.Position.Y);
+                var color = pieces.PieceAtSquare(newPos);
+                if(color != this.Colour)
+                {
+                    points.Add(newPos);
+
+                    if(color != Colour.None)
+                    {
+                        break;
+
+                    }
+
+                }
+                else
+                {
+                    break;
+                }
+
+
                 right ++;
             }
 
             while(left >= 0)
             {
-                points.Add(new Point(left,this.Position.Y));
+                newPos = new Point(left,this.Position.Y);
+                var color = pieces.PieceAtSquare(newPos);
+                if(color != this.Colour)
+                {
+                    points.Add(newPos);
+                    if(color != Colour.None)
+                    {
+                     break;
+                    }
+                }
+                else
+                {
+                    break;
+                }
                 left --;
             }
 
