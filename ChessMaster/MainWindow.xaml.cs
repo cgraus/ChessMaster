@@ -335,6 +335,48 @@ namespace ChessMaster
                     rect.MouseDown += this.DoMove;
                 }
             }
+
+            var whitePieceX = xoffset - size;
+            var whitePieceY = 5;
+
+            foreach (var piece in RemovedWhitePieces)
+            {
+                piece.Image.Width = size;
+                piece.Image.Height = size;
+
+                _ = GameArea.Children.Add(piece.Image);
+                Canvas.SetLeft(piece.Image, whitePieceX);
+                Canvas.SetTop(piece.Image, whitePieceY);
+
+                whitePieceY += size + 5;
+
+                if(whitePieceY + size > GameArea.ActualHeight)
+                {
+                    whitePieceY = 5;
+                    whitePieceX -= (size + 5);
+                }
+            }
+
+            var blackPieceX = xoffset + (size * 8) ;
+            var blackPieceY = 5;
+
+            foreach (var piece in RemovedBlackPieces)
+            {
+                piece.Image.Width = size;
+                piece.Image.Height = size;
+
+                _ = GameArea.Children.Add(piece.Image);
+                Canvas.SetLeft(piece.Image, blackPieceX);
+                Canvas.SetTop(piece.Image, blackPieceY);
+
+                blackPieceY += size + 5;
+
+                if (blackPieceY + size > GameArea.ActualHeight)
+                {
+                    blackPieceY = 5;
+                    blackPieceX += (size + 5);
+                }
+            }
         }
     }
 }
