@@ -22,6 +22,7 @@ namespace ChessMaster
     public partial class MainWindow : Window
     {
         private List<IPiece> Pieces;
+        private List<IPiece> RemovedPieces;
         private IPiece selectedPiece = null;
 
         public MainWindow()
@@ -29,6 +30,7 @@ namespace ChessMaster
             InitializeComponent();
             CreatePieces();
             this.ContentRendered += this.Window_ContentRendered;
+            WhitePieces.DataContext = RemovedWhitePieces;
         }
 
         private void Window_ContentRendered(object sender, EventArgs e)
@@ -36,8 +38,26 @@ namespace ChessMaster
             DrawGameArea();
         }
 
+        public List<IPiece> RemovedBlackPieces
+        {
+            get
+            {
+                return RemovedPieces.Where(e => e.Colour == BoardStyle.Colour.Black).ToList();
+            }
+        }
+
+        public List<IPiece> RemovedWhitePieces
+        {
+            get
+            {
+                return RemovedPieces.Where(e => e.Colour == BoardStyle.Colour.White).ToList();
+            }
+        }
+
+
         private void CreatePieces()
         {
+            this.RemovedPieces = new List<IPiece>();
             this.Pieces = new List<IPiece>();
 
             for(var n = 0; n<8; ++n)
@@ -158,6 +178,18 @@ namespace ChessMaster
         {
             var rect = p as Rectangle;
             var pos = (Point)rect.Tag;
+
+            var piece = Pieces.Where(e => e.Position == pos).FirstOrDefault();
+
+            if (piece != null)
+            {
+                if (piece.PieceType == Piece.Pieces.King)
+                {
+                    // TODO: Game won
+                }
+                RemovedPieces.Add(piece);
+                Pieces.Remove(piece);
+            }
 
             this.selectedPiece.Position = pos;
             this.selectedPiece = null;
