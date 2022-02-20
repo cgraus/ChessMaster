@@ -30,7 +30,6 @@ namespace ChessMaster
             InitializeComponent();
             CreatePieces();
             this.ContentRendered += this.Window_ContentRendered;
-            WhitePieces.DataContext = RemovedWhitePieces;
         }
 
         private void Window_ContentRendered(object sender, EventArgs e)
