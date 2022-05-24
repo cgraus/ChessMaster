@@ -97,12 +97,12 @@ namespace ChessMaster
                 Position = new Point(5, 0)
             });
 
-            Pieces.Add(new King(BoardStyle.Colour.Black)
+            Pieces.Add(new Queen(BoardStyle.Colour.Black)
             {
                 Position = new Point(3, 0)
             });
 
-            Pieces.Add(new Queen(BoardStyle.Colour.Black)
+            Pieces.Add(new King(BoardStyle.Colour.Black)
             {
                 Position = new Point(4, 0)
             });
@@ -145,12 +145,12 @@ namespace ChessMaster
                 Position = new Point(5, 7)
             });
 
-            Pieces.Add(new King(BoardStyle.Colour.White)
+            Pieces.Add(new Queen(BoardStyle.Colour.White)
             {
                 Position = new Point(3, 7)
             });
 
-            Pieces.Add(new Queen(BoardStyle.Colour.White)
+            Pieces.Add(new King(BoardStyle.Colour.White)
             {
                 Position = new Point(4, 7)
             });
@@ -195,7 +195,7 @@ namespace ChessMaster
             DrawGameArea();
         }
 
-        void MouseDown(object p, MouseButtonEventArgs ea)
+        new void MouseDown(object p, MouseButtonEventArgs ea)
         {
             var image = p as Image;
 
@@ -204,7 +204,7 @@ namespace ChessMaster
             selectedPiece = piece;
             DrawGameArea();
         }
-        void MouseUp(object p, MouseButtonEventArgs ea)
+       new  void MouseUp(object p, MouseButtonEventArgs ea)
         {
             if(selectedPiece != null)
             {
@@ -227,9 +227,14 @@ namespace ChessMaster
                 {
                     var moves = piece.GetMoves(this.Pieces.ToArray());
 
-                    var takeKing = moves.Where(e => new Point(e.X, e.Y) == king.Position).FirstOrDefault();
+                    var takeKing = moves.Where(e => e.X == king.Position.X && e.Y == king.Position.Y).Count();
 
-                    if(takeKing != null)
+                    if(selectedPiece.PieceType == Piece.Pieces.King)
+                    {
+                        takeKing = moves.Where(e => e.X == selectedPiece.Position.X && e.Y == selectedPiece.Position.Y).Count();
+                    }
+
+                    if(takeKing > 0)  
                     {
                         //This opens the king and is not OK
                         MessageBox.Show(this, "This move would open your king to be taken");
