@@ -212,6 +212,7 @@ namespace ChessMaster
                 List <IPiece> otherPieces = null;
                 IPiece king = null;
 
+                // Get the pieces 
                 if(selectedPiece.Colour == BoardStyle.Colour.Black)
                 {
                     otherPieces = this.Pieces.Where(e => e.Colour == BoardStyle.Colour.White).ToList();
@@ -225,10 +226,13 @@ namespace ChessMaster
 
                 foreach(var piece in otherPieces)
                 {
+                    // Get the moves for each piece
                     var moves = piece.GetMoves(this.Pieces.ToArray());
 
+                    // Can a move take the king?
                     var takeKing = moves.Where(e => e.X == king.Position.X && e.Y == king.Position.Y).Count();
 
+                    // If we're moving the king, check it's new location
                     if(selectedPiece.PieceType == Piece.Pieces.King)
                     {
                         takeKing = moves.Where(e => e.X == selectedPiece.Position.X && e.Y == selectedPiece.Position.Y).Count();
