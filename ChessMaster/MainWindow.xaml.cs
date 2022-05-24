@@ -208,6 +208,35 @@ namespace ChessMaster
         {
             if(selectedPiece != null)
             {
+                // Work out if the king is left open
+                List <IPiece> otherPieces = null;
+                IPiece king = null;
+
+                if(selectedPiece.Colour == BoardStyle.Colour.Black)
+                {
+                    otherPieces = this.Pieces.Where(e => e.Colour == BoardStyle.Colour.White).ToList();
+                    king = this.Pieces.Where(e => e.Colour == BoardStyle.Colour.Black && e.PieceType == Piece.Pieces.King).FirstOrDefault();
+                }
+                else
+                {
+                    otherPieces = this.Pieces.Where(e => e.Colour == BoardStyle.Colour.Black).ToList();
+                    king = this.Pieces.Where(e => e.Colour == BoardStyle.Colour.White && e.PieceType == Piece.Pieces.King).FirstOrDefault();
+                }
+
+                foreach(var piece in otherPieces)
+                {
+                    var moves = piece.GetMoves(this.Pieces.ToArray());
+
+                    var takeKing = moves.Where(e => new Point(e.X, e.Y) == king.Position).FirstOrDefault();
+
+                    if(takeKing != null)
+                    {
+                        //This opens the king and is not OK
+                        MessageBox.Show(this, "This move would open your king to be taken");
+                        return;
+                    }
+                }
+
                 var rect = p as Rectangle;
 
                 if (rect != null)
